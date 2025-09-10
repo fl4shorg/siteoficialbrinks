@@ -216,7 +216,7 @@ export const Header: React.FC = () => {
                   
                   {/* Menu Items with Roman styling */}
                   <div className="p-2 sm:p-3 space-y-1">
-                    <DropdownMenuItem onClick={() => navigate('/loginbrinks')} className="group relative overflow-hidden rounded-lg p-4 cursor-pointer border border-transparent hover:border-brinks-blue/20 hover:bg-gradient-to-r hover:from-brinks-blue/5 hover:to-brinks-green/5 transition-all duration-300">
+                    <DropdownMenuItem onClick={() => window.location.href = 'https://www.neext.online/loginbrinks'} className="group relative overflow-hidden rounded-lg p-4 cursor-pointer border border-transparent hover:border-brinks-blue/20 hover:bg-gradient-to-r hover:from-brinks-blue/5 hover:to-brinks-green/5 transition-all duration-300">
                       <div className="flex items-center gap-3 w-full">
                         <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-brinks-blue/20 to-brinks-green/20 flex items-center justify-center border border-white/10">
                           <User className="w-5 h-5 text-brinks-blue" />
