@@ -369,7 +369,7 @@ export const ReportGenerator: React.FC = () => {
         <div className="text-center">
           <h3 className="text-lg font-semibold mb-2">Imagem Oficial da Aliança</h3>
           <p className="text-sm text-muted-foreground mb-4">
-            Baixe a arte oficial com moldura romana, louros e símbolo da Brinks
+            Baixe oficialmente
           </p>
         </div>
         
