@@ -3,7 +3,7 @@ import { Menu, Sun, Moon, Shield, Crown, User, Scroll, Users, Music, Sword } fro
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useNavigate } from 'react-router-dom';
-import spartanIcon from '@/assets/spartan-icon.png';
+const spartanIcon = 'https://i.ibb.co/27RT485N/spartan-icon-DJz-VHnam.png';
 
 export const Header: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = React.useState(true);

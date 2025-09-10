@@ -1,6 +1,6 @@
 import React from 'react';
 import { Instagram, Crown, Shield } from 'lucide-react';
-import spartanIcon from '@/assets/spartan-icon.png';
+const spartanIcon = 'https://i.ibb.co/27RT485N/spartan-icon-DJz-VHnam.png';
 
 export const Footer: React.FC = () => {
   return (

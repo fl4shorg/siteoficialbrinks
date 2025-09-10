@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Download, FileImage, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
-import brinksLogo from '@/assets/brinks-logo.png';
-import spartanIcon from '@/assets/spartan-icon.png';
+const brinksLogo = 'https://i.ibb.co/Ndtp1L0z/brinks-logo-DHh-GHGPj.png';
+const spartanIcon = 'https://i.ibb.co/27RT485N/spartan-icon-DJz-VHnam.png';
 
 const benefits = [
   { title: 'Segurança', description: 'Proteção contra ameaças internas' },

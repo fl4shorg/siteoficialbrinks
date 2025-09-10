@@ -1,8 +1,8 @@
 import React from 'react';
 import { Shield, MessageCircle, Users, Star, Swords } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import bannerBackground from '@/assets/banner-background.gif';
-import brinksLogo from '@/assets/brinks-logo.png';
+const bannerBackground = 'https://i.ibb.co/dwLjJZx8/banner-background-BJtz-BUPP.gif';
+const brinksLogo = 'https://i.ibb.co/Ndtp1L0z/brinks-logo-DHh-GHGPj.png';
 
 export const HeroSection: React.FC = () => {
   return (
