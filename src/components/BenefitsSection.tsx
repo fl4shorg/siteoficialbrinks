@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, Shield, Bot, TrendingUp, Heart } from 'lucide-react';
+import { Users, Shield, Bot, TrendingUp, Heart, Tv, Gift } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const benefits = [
@@ -27,6 +27,16 @@ const benefits = [
     icon: Heart,
     title: 'Apoio Total',
     description: 'Se mexer com um, é como mexer com todos. A Aliança Brinks está sempre ao seu lado.',
+  },
+  {
+    icon: Tv,
+    title: 'Contas Streaming',
+    description: 'Contas de streaming premium todos os dias para membros da aliança.',
+  },
+  {
+    icon: Gift,
+    title: 'Gift Cards',
+    description: 'Gift cards exclusivos distribuídos diariamente para nossos membros.',
   },
 ];
 
