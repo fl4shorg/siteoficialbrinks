@@ -37,6 +37,26 @@ export const ReportGenerator: React.FC = () => {
       canvas.width = 1600;
       canvas.height = 2000;
 
+      // Helper function for rounded rectangles
+      function drawRoundedRect(x: number, y: number, w: number, h: number, r: number, fill?: string, stroke?: string) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + w, y, x + w, y + h, r);
+        ctx.arcTo(x + w, y + h, x, y + h, r);
+        ctx.arcTo(x, y + h, x, y, r);
+        ctx.arcTo(x, y, x + w, y, r);
+        ctx.closePath();
+        if (fill) { 
+          ctx.fillStyle = fill; 
+          ctx.fill(); 
+        }
+        if (stroke) { 
+          ctx.strokeStyle = stroke; 
+          ctx.lineWidth = 1; 
+          ctx.stroke(); 
+        }
+      }
+
       // Ultra-professional Roman background with multiple layers
       const bgGradient = ctx.createRadialGradient(canvas.width/2, canvas.height/2, 0, canvas.width/2, canvas.height/2, canvas.height);
       bgGradient.addColorStop(0, '#1a2332'); // Darker center
@@ -721,11 +741,27 @@ export const ReportGenerator: React.FC = () => {
       ctx.font = 'italic 20px Georgia, serif';
       ctx.fillText('⚔️ Unidos Somos Invencíveis - Divididos Somos Vulneráveis ⚔️', canvas.width / 2, footerTextY + 30);
       
-      // Date stamp
+      // Date pill in bottom-right corner (conflict-free zone)
       const currentDate = new Date().toLocaleDateString('pt-BR');
-      ctx.fillStyle = '#6b7280';
-      ctx.font = '16px Monaco, monospace';
-      ctx.fillText(`Gerado em: ${currentDate}`, canvas.width / 2, footerTextY + 35);
+      ctx.textBaseline = 'middle';
+      ctx.font = 'bold 20px Georgia, serif';
+      const dateText = `📅 ${currentDate}`;
+      const padX = 12, padY = 8;
+      const textW = ctx.measureText(dateText).width;
+      const pillH = 28;
+      const pillX = canvas.width - 80 - 24 - (textW + 2 * padX);
+      const pillY = footerY + footerHeight - 24 - pillH;
+      
+      // Pill background with gradient
+      const pillGrad = ctx.createLinearGradient(pillX, pillY, pillX, pillY + pillH);
+      pillGrad.addColorStop(0, 'rgba(17,114,212,0.6)');
+      pillGrad.addColorStop(1, 'rgba(52,211,153,0.35)');
+      drawRoundedRect(pillX, pillY, textW + 2 * padX, pillH, 8, pillGrad, '#ffffff');
+      
+      // Date text
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(dateText, pillX + padX, pillY + pillH / 2);
 
       // Convert canvas to blob and download
       canvas.toBlob((blob) => {
