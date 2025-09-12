@@ -59,10 +59,7 @@ const GroupCard: React.FC<{ group: Group }> = ({ group }) => {
   };
 
   return (
-    <div 
-      className="relative group cursor-pointer card-elevated bg-card rounded-xl overflow-hidden backdrop-blur-sm hover:border-brinks-blue/30 transition-all duration-500 h-full mx-auto w-full max-w-[160px] sm:max-w-[220px] lg:max-w-[280px] xl:max-w-[320px]"
-      onClick={() => window.open(group.link, '_blank')}
-    >
+    <div className="relative group cursor-pointer card-elevated bg-card rounded-xl overflow-hidden backdrop-blur-sm hover:border-brinks-blue/30 transition-all duration-500 h-full mx-auto w-full max-w-[320px]">
       {/* Roman Imperial Decorative Border */}
       <div className="absolute inset-0 pointer-events-none z-20">
         {/* Outer ornamental frame */}
@@ -88,9 +85,9 @@ const GroupCard: React.FC<{ group: Group }> = ({ group }) => {
         </div>
       </div>
 
-      {/* Background Image with Overlay - Responsive height */}
+      {/* Background Image with Overlay - Increased height like in image */}
       <div 
-        className="relative h-24 sm:h-32 lg:h-40 xl:h-48 w-full bg-cover bg-center overflow-hidden rounded-t-xl"
+        className="relative h-48 w-full bg-cover bg-center overflow-hidden rounded-t-xl"
         style={{ backgroundImage: `url(${group.image})` }}
       >
         {/* Dark overlay for better text readability */}
@@ -152,17 +149,17 @@ const GroupCard: React.FC<{ group: Group }> = ({ group }) => {
       </div>
       
       {/* Content section with Roman styling - Compact like in image */}
-      <div className="relative bg-gradient-to-b from-card to-muted/30 p-2 sm:p-3 space-y-1 sm:space-y-2 rounded-b-xl">
+      <div className="relative bg-gradient-to-b from-card to-muted/30 p-3 space-y-2 rounded-b-xl">
         {/* Roman decorative line separator */}
         <div className="absolute top-0 left-3 right-3 h-px bg-gradient-to-r from-transparent via-brinks-green/40 to-transparent"></div>
         
         {/* Group name - smaller like in image */}
-        <h3 className="text-xs sm:text-sm font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent leading-tight line-clamp-2">
+        <h3 className="text-sm font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent leading-tight line-clamp-2">
           {group.name}
         </h3>
         
         {/* Group description */}
-        <p className="text-[10px] sm:text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+        <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
           {group.description}
         </p>
         
@@ -186,17 +183,14 @@ const GroupCard: React.FC<{ group: Group }> = ({ group }) => {
           </div>
           
           <Button 
-            className="relative z-10 w-full bg-gradient-to-r from-brinks-blue to-brinks-green hover:from-brinks-blue/90 hover:to-brinks-green/90 text-white font-medium py-1.5 sm:py-2 px-2 sm:px-3 text-[10px] sm:text-xs rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border border-white/10 min-h-[32px] sm:min-h-[36px]"
-            onClick={(e) => {
-              e.stopPropagation();
-              window.open(group.link, '_blank');
-            }}
+            className="relative z-10 w-full bg-gradient-to-r from-brinks-blue to-brinks-green hover:from-brinks-blue/90 hover:to-brinks-green/90 text-white font-medium py-1.5 px-1.5 text-xs rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border border-white/10"
+            onClick={() => window.open(group.link, '_blank')}
           >
-            <Users className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-0.5 sm:mr-1 flex-shrink-0" />
+            <Users className="w-3 h-3 mr-1 flex-shrink-0" />
             <span className="truncate leading-tight">
               {group.platform === 'telegram' 
-                ? (group.isChannel ? 'Canal' : 'Grupo')
-                : (group.isChannel ? 'Canal' : 'Servidor')
+                ? (group.isChannel ? 'Entrar no Canal' : 'Entrar no Grupo')
+                : (group.isChannel ? 'Entrar no Canal' : 'Entrar no Servidor')
               }
             </span>
           </Button>
@@ -411,8 +405,8 @@ export const GroupsSection: React.FC = () => {
   const renderGroupsGrid = (groups: Group[]) => {
     console.log('=== DEBUG: Renderizando grupos ===', groups.length);
     return (
-      <div className="w-full px-1 sm:px-4 md:px-0">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-3 md:gap-4 lg:gap-6 justify-items-center">
+      <div className="w-full px-2 sm:px-4 md:px-0">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-6 justify-items-center">
           {groups.map((group, index) => (
             <div key={group.id} className="w-full">
               <GroupCard group={group} />
