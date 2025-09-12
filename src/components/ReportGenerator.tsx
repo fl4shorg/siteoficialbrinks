@@ -725,7 +725,7 @@ export const ReportGenerator: React.FC = () => {
       const currentDate = new Date().toLocaleDateString('pt-BR');
       ctx.fillStyle = '#6b7280';
       ctx.font = '16px Monaco, monospace';
-      ctx.fillText(`Gerado em: ${currentDate}`, canvas.width / 2, footerTextY + 50);
+      ctx.fillText(`Gerado em: ${currentDate}`, canvas.width / 2, footerTextY + 35);
 
       // Convert canvas to blob and download
       canvas.toBlob((blob) => {
