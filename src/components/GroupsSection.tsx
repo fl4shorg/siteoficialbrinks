@@ -590,9 +590,9 @@ export const GroupsSection: React.FC = () => {
         {/* Filter Tabs */}
         <div className="mb-4 sm:mb-6 md:mb-8 w-full">
           <Tabs value={activeFilter} onValueChange={setActiveFilter} className="w-full">
-            <div className="w-full mb-4 sm:mb-6">
-              <div className="overflow-x-auto scrollbar-hide pb-2 px-1 sm:px-2 md:px-0">
-                <TabsList className="flex h-10 sm:h-12 md:h-14 items-center justify-start rounded-md bg-card/50 backdrop-blur-sm border border-border/50 p-1 sm:p-1.5 text-muted-foreground shadow-md w-max gap-1 sm:gap-1.5 overflow-x-auto">
+            <div className="w-full mb-4 sm:mb-6 flex justify-center">
+              <div className="w-full max-w-4xl">
+                <TabsList className="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-2 h-auto rounded-lg bg-card/50 backdrop-blur-sm border border-border/50 p-2 sm:p-3 text-muted-foreground shadow-md w-full">
                   {[
                     { value: 'all', label: 'Todos', icon: Hash },
                     { value: 'featured', label: 'Destaque', icon: Star },
@@ -610,10 +610,10 @@ export const GroupsSection: React.FC = () => {
                       <TabsTrigger
                         key={tab.value}
                         value={tab.value}
-                        className="flex items-center justify-center gap-1 sm:gap-1.5 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-2.5 text-xs sm:text-sm font-medium transition-all duration-200 data-[state=active]:bg-gradient-to-r data-[state=active]:from-brinks-blue data-[state=active]:to-brinks-green data-[state=active]:text-white data-[state=active]:shadow-md whitespace-nowrap flex-shrink-0 rounded-md min-w-[40px] sm:min-w-[44px] md:min-w-[48px]"
+                        className="flex flex-col items-center justify-center gap-1 px-2 py-3 sm:py-4 text-xs font-medium transition-all duration-200 data-[state=active]:bg-gradient-to-r data-[state=active]:from-brinks-blue data-[state=active]:to-brinks-green data-[state=active]:text-white data-[state=active]:shadow-md rounded-lg aspect-square min-h-[50px] sm:min-h-[60px] hover:bg-muted/80"
                       >
-                        <Icon className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0" />
-                        <span className="sr-only">{tab.label}</span>
+                        <Icon className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                        <span className="text-[10px] sm:text-xs leading-none text-center">{tab.label}</span>
                       </TabsTrigger>
                     );
                   })}
