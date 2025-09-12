@@ -408,7 +408,7 @@ export const GroupsSection: React.FC = () => {
       <div className="w-full px-2 sm:px-4 md:px-0">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-6 justify-items-center">
           {groups.map((group, index) => (
-            <div key={group.id} className="w-full">
+            <div key={group.id} className="w-40 sm:w-full">
               <GroupCard group={group} />
             </div>
           ))}
