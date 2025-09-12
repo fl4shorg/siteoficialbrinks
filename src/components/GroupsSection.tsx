@@ -184,7 +184,7 @@ const GroupCard: React.FC<{ group: Group }> = ({ group }) => {
           
           <Button 
             className="relative z-10 w-full bg-gradient-to-r from-brinks-blue to-brinks-green hover:from-brinks-blue/90 hover:to-brinks-green/90 text-white font-medium py-0.5 sm:py-1 px-0.5 sm:px-1 text-[8px] sm:text-[10px] rounded-md shadow-md hover:shadow-lg transition-all duration-300 border border-white/10"
-            onClick={() => window.open(group.link, '_blank')}
+            onClick={() => window.open(group.link, '_blank', 'noopener,noreferrer')}
           >
             <Users className="w-2 h-2 sm:w-2.5 sm:h-2.5 mr-0.5 flex-shrink-0" />
             <span className="truncate leading-tight">
@@ -213,8 +213,11 @@ export const GroupsSection: React.FC = () => {
   const mapCategory = (apiCategory: string, destaque: string): Group['category'] => {
     if (destaque === 'destaque') return 'featured';
     if (destaque === 'fixado') return 'pinned';
+    if (destaque === 'premium') return 'premium';
     
     switch (apiCategory?.toLowerCase()) {
+      case 'premium':
+        return 'premium';
       case 'animes':
       case 'figurinhas':
         return 'anime';
@@ -304,7 +307,7 @@ export const GroupsSection: React.FC = () => {
       platform,
       category,
       isPinned: apiGroup.Destaque === 'fixado',
-      isPremium: false,
+      isPremium: apiGroup.Destaque === 'premium' || apiGroup.Categoria?.toLowerCase() === 'premium',
       isFeatured: apiGroup.Destaque === 'destaque',
       isChannel: apiGroup.Categoria?.toLowerCase() === 'canal',
       postDate: getRelativeTime(apiGroup.Data),
@@ -406,9 +409,9 @@ export const GroupsSection: React.FC = () => {
     console.log('=== DEBUG: Renderizando grupos ===', groups.length);
     return (
       <div className="w-full px-1 sm:px-2 md:px-4 lg:px-0">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-1 sm:gap-2 md:gap-3 lg:gap-4 justify-items-center">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2 sm:gap-3 md:gap-4 lg:gap-4 justify-items-center">
           {groups.map((group, index) => (
-            <div key={group.id} className="w-full max-w-[180px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-full">
+            <div key={group.id} className="w-full max-w-[160px] sm:max-w-[180px] md:max-w-[200px] lg:max-w-[220px] xl:max-w-[240px]">
               <GroupCard group={group} />
             </div>
           ))}
@@ -578,11 +581,12 @@ export const GroupsSection: React.FC = () => {
           <Tabs value={activeFilter} onValueChange={setActiveFilter} className="w-full">
             <div className="w-full mb-4 sm:mb-6">
               <div className="overflow-x-auto scrollbar-hide pb-2 px-1 sm:px-2 md:px-0">
-                <TabsList className="flex h-8 sm:h-10 items-center justify-start rounded-md bg-card/50 backdrop-blur-sm border border-border/50 p-0.5 sm:p-1 text-muted-foreground shadow-md w-max gap-0.5 sm:gap-1 overflow-x-auto">
+                <TabsList className="flex h-10 sm:h-12 md:h-14 items-center justify-start rounded-md bg-card/50 backdrop-blur-sm border border-border/50 p-1 sm:p-1.5 text-muted-foreground shadow-md w-max gap-1 sm:gap-1.5 overflow-x-auto">
                   {[
                     { value: 'all', label: 'Todos', icon: Hash },
                     { value: 'featured', label: 'Destaque', icon: Star },
                     { value: 'pinned', label: 'Fixados', icon: Pin },
+                    { value: 'premium', label: 'Premium', icon: Crown },
                     { value: 'anime', label: 'Anime', icon: Sticker },
                     { value: 'channels', label: 'Canais', icon: Radio },
                     { value: 'friendship', label: 'Amizade', icon: Heart },
@@ -594,10 +598,10 @@ export const GroupsSection: React.FC = () => {
                       <TabsTrigger
                         key={tab.value}
                         value={tab.value}
-                        className="flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium transition-all duration-200 data-[state=active]:bg-gradient-to-r data-[state=active]:from-brinks-blue data-[state=active]:to-brinks-green data-[state=active]:text-white data-[state=active]:shadow-md whitespace-nowrap flex-shrink-0 rounded-md min-w-0"
+                        className="flex items-center justify-center gap-1 sm:gap-1.5 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-2.5 text-xs sm:text-sm font-medium transition-all duration-200 data-[state=active]:bg-gradient-to-r data-[state=active]:from-brinks-blue data-[state=active]:to-brinks-green data-[state=active]:text-white data-[state=active]:shadow-md whitespace-nowrap flex-shrink-0 rounded-md min-w-[40px] sm:min-w-[44px] md:min-w-[48px]"
                       >
-                        <Icon className="w-2.5 h-2.5 sm:w-3 sm:h-3 flex-shrink-0" />
-                        <span className="hidden min-[350px]:inline text-[9px] sm:text-xs">{tab.label}</span>
+                        <Icon className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0" />
+                        <span className="sr-only">{tab.label}</span>
                       </TabsTrigger>
                     );
                   })}
@@ -623,6 +627,15 @@ export const GroupsSection: React.FC = () => {
                 'Grupos importantes sempre em evidência',
                 Pin,
                 'bg-gradient-to-r from-brinks-blue to-primary'
+              )}
+
+              {/* Premium Groups */}
+              {renderCategorySection(
+                'premium',
+                'Grupos Premium',
+                'Acesso exclusivo aos melhores grupos premium',
+                Crown,
+                'bg-gradient-to-r from-amber-500 to-yellow-500'
               )}
 
               {/* Anime Groups */}
@@ -675,6 +688,7 @@ export const GroupsSection: React.FC = () => {
             {[
               { value: 'featured', title: 'Grupos em Destaque' },
               { value: 'pinned', title: 'Grupos Fixados' },
+              { value: 'premium', title: 'Grupos Premium' },
               { value: 'anime', title: 'Animes & Figurinhas' },
               { value: 'channels', title: 'Canais Oficiais' },
               { value: 'friendship', title: 'Novas Amizades' },
