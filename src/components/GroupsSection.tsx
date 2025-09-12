@@ -12,7 +12,7 @@ interface Group {
   image: string;
   link: string;
   platform: 'telegram' | 'discord';
-  category: 'pinned' | 'premium' | 'anime' | 'featured' | 'channels' | 'friendship' | 'discord' | 'telegram';
+  category: 'pinned' | 'premium' | 'anime' | 'stickers' | 'featured' | 'channels' | 'friendship' | 'discord' | 'telegram';
   isPinned?: boolean;
   isPremium?: boolean;
   isFeatured?: boolean;
@@ -39,7 +39,8 @@ const GroupCard: React.FC<{ group: Group }> = ({ group }) => {
     if (group.isPinned) return 'FIXADO';
     if (group.isFeatured) return 'DESTAQUE';
     if (group.isChannel) return 'CANAL';
-    if (group.category === 'anime') return 'ANIMES & FIGURINHAS';
+    if (group.category === 'anime') return 'ANIME';
+    if (group.category === 'stickers') return 'FIGURINHAS';
     if (group.category === 'friendship') return 'NOVAS AMIZADES';
     if (group.platform === 'discord') return 'SERVIDOR DISCORD';
     if (group.platform === 'telegram') return 'GRUPO TELEGRAM';
@@ -52,6 +53,7 @@ const GroupCard: React.FC<{ group: Group }> = ({ group }) => {
     if (group.isFeatured) return 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg';
     if (group.isChannel) return 'bg-gradient-to-r from-red-500 to-orange-500 text-white shadow-lg';
     if (group.category === 'anime') return 'bg-gradient-to-r from-brinks-blue to-cyan-500 text-white shadow-lg';
+    if (group.category === 'stickers') return 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg';
     if (group.category === 'friendship') return 'bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-lg';
     if (group.platform === 'discord') return 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg';
     if (group.platform === 'telegram') return 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg';
@@ -219,8 +221,9 @@ export const GroupsSection: React.FC = () => {
       case 'premium':
         return 'premium';
       case 'animes':
-      case 'figurinhas':
         return 'anime';
+      case 'figurinhas':
+        return 'stickers';
       case 'canal':
         return 'channels';
       case 'novas amizades':
@@ -258,6 +261,7 @@ export const GroupsSection: React.FC = () => {
       case 'featured': return '🌟';
       case 'pinned': return '📌';
       case 'anime': return '🎌';
+      case 'stickers': return '🎭';
       case 'channels': return '📢';
       case 'friendship': return '💖';
       case 'discord': return '🎮';
@@ -364,6 +368,8 @@ export const GroupsSection: React.FC = () => {
         return groups.filter(group => group.isPremium);
       case 'anime':
         return groups.filter(group => group.category === 'anime');
+      case 'stickers':
+        return groups.filter(group => group.category === 'stickers');
       case 'channels':
         return groups.filter(group => group.category === 'channels');
       case 'friendship':
@@ -385,6 +391,7 @@ export const GroupsSection: React.FC = () => {
       case 'featured': return Star;
       case 'premium': return Crown;
       case 'anime': return Sticker;
+      case 'stickers': return Hash;
       case 'channels': return Radio;
       case 'friendship': return Heart;
       default: return Hash;
@@ -399,6 +406,7 @@ export const GroupsSection: React.FC = () => {
       case 'featured': return 'Destaque';
       case 'premium': return 'Premium';
       case 'anime': return 'Anime';
+      case 'stickers': return 'Figurinhas';
       case 'channels': return 'Canais';
       case 'friendship': return 'Amizade';
       default: return 'Todos';
@@ -441,6 +449,9 @@ export const GroupsSection: React.FC = () => {
         break;
       case 'anime':
         filteredCategoryGroups = groups.filter(group => group.category === 'anime');
+        break;
+      case 'stickers':
+        filteredCategoryGroups = groups.filter(group => group.category === 'stickers');
         break;
       case 'channels':
         filteredCategoryGroups = groups.filter(group => group.category === 'channels');
@@ -588,6 +599,7 @@ export const GroupsSection: React.FC = () => {
                     { value: 'pinned', label: 'Fixados', icon: Pin },
                     { value: 'premium', label: 'Premium', icon: Crown },
                     { value: 'anime', label: 'Anime', icon: Sticker },
+                    { value: 'stickers', label: 'Figurinhas', icon: Hash },
                     { value: 'channels', label: 'Canais', icon: Radio },
                     { value: 'friendship', label: 'Amizade', icon: Heart },
                     { value: 'telegram', label: 'Telegram', icon: Send },
@@ -641,10 +653,19 @@ export const GroupsSection: React.FC = () => {
               {/* Anime Groups */}
               {renderCategorySection(
                 'anime',
-                'Animes & Figurinhas',
-                'Para os fãs de anime e colecionadores',
+                'Animes',
+                'Para os fãs de anime e cultura japonesa',
                 Sticker,
                 'bg-gradient-to-r from-brinks-blue to-cyan-500'
+              )}
+
+              {/* Stickers Groups */}
+              {renderCategorySection(
+                'stickers',
+                'Figurinhas',
+                'Colecionadores de stickers e figurinhas',
+                Hash,
+                'bg-gradient-to-r from-orange-500 to-red-500'
               )}
 
               {/* Channel Groups */}
@@ -689,7 +710,8 @@ export const GroupsSection: React.FC = () => {
               { value: 'featured', title: 'Grupos em Destaque' },
               { value: 'pinned', title: 'Grupos Fixados' },
               { value: 'premium', title: 'Grupos Premium' },
-              { value: 'anime', title: 'Animes & Figurinhas' },
+              { value: 'anime', title: 'Animes' },
+              { value: 'stickers', title: 'Figurinhas' },
               { value: 'channels', title: 'Canais Oficiais' },
               { value: 'friendship', title: 'Novas Amizades' },
               { value: 'telegram', title: 'Grupos Telegram' },
