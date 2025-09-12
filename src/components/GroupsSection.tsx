@@ -476,7 +476,7 @@ export const GroupsSection: React.FC = () => {
     return (
       <section className="px-4 sm:px-0">
         <div className="relative mb-6 sm:mb-8">
-          <div className="relative z-10 flex flex-col items-center text-center gap-4">
+          <div className="relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex items-center gap-3">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-brinks-blue/20 to-brinks-green/20 rounded-lg transform rotate-45 blur-sm"></div>
@@ -486,11 +486,16 @@ export const GroupsSection: React.FC = () => {
               </div>
               <div>
                 <h3 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-                  {titleWithCount}
+                  {title}
                 </h3>
                 <p className="text-muted-foreground text-xs sm:text-sm">
                   {description}
                 </p>
+              </div>
+            </div>
+            <div className="text-left sm:text-right">
+              <div className="text-[10px] sm:text-xs text-muted-foreground">
+                {filteredCategoryGroups.length} {filteredCategoryGroups.length === 1 ? 'grupo' : 'grupos'}
               </div>
             </div>
           </div>
