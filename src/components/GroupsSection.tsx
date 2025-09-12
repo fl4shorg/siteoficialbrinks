@@ -158,6 +158,11 @@ const GroupCard: React.FC<{ group: Group }> = ({ group }) => {
           {group.name}
         </h3>
         
+        {/* Group description */}
+        <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+          {group.description}
+        </p>
+        
         {/* Date with symbol - compact */}
         <div className="flex items-center gap-1 text-xs text-muted-foreground/80">
           <span>{group.dateSymbol}</span>
