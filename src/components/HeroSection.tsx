@@ -225,7 +225,7 @@ export const HeroSection: React.FC = () => {
               variant="glass-blue" 
               size="default" 
               className="relative z-10 font-bold"
-              onClick={() => window.open('https://chat.whatsapp.com/DEnGxy9GELcIRVxf28hkl5?mode=ems_copy_t', '_blank')}
+              onClick={() => window.open('https://chat.whatsapp.com/Biy0YgMPkgf66l3QJaUklS?mode=ems_copy_c', '_blank')}
             >
               <img src="https://i.ibb.co/zVKKzrGd/capacete-romano.png" alt="Roman Helmet" className="w-5 h-5 mr-2" />
               Recrutamento: Faça Parte da Aliança
