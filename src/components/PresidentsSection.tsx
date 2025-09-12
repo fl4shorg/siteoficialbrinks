@@ -13,13 +13,13 @@ const PresidentsSection = () => {
       name: 'Wd',
       image: 'https://i.ibb.co/7ty4kjBc/IMG-20250908-WA0091.jpg',
       initials: 'WD',
-      phone: '+5595990495600'
+      phone: '+559599049560'
     },
     {
       name: 'Leidy',
       image: 'https://i.ibb.co/LdFC2WNz/IMG-20250909-WA0000.jpg',
       initials: 'LD',
-      phone: '+5535977631310'
+      phone: '+553597763131'
     }
   ];
 
