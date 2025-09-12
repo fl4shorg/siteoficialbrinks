@@ -59,7 +59,7 @@ const GroupCard: React.FC<{ group: Group }> = ({ group }) => {
   };
 
   return (
-    <div className="relative group cursor-pointer card-elevated bg-card rounded-lg overflow-hidden backdrop-blur-sm hover:border-brinks-blue/30 transition-all duration-500 h-full mx-auto w-full max-w-[240px]">
+    <div className="relative group cursor-pointer card-elevated bg-card rounded-lg overflow-hidden backdrop-blur-sm hover:border-brinks-blue/30 transition-all duration-500 h-full w-full">
       {/* Roman Imperial Decorative Border */}
       <div className="absolute inset-0 pointer-events-none z-20">
         {/* Outer ornamental frame */}
@@ -87,7 +87,7 @@ const GroupCard: React.FC<{ group: Group }> = ({ group }) => {
 
       {/* Background Image with Overlay - Increased height like in image */}
       <div 
-        className="relative h-32 sm:h-36 w-full bg-cover bg-center overflow-hidden rounded-t-lg"
+        className="relative h-28 sm:h-32 md:h-36 w-full bg-cover bg-center overflow-hidden rounded-t-lg"
         style={{ backgroundImage: `url(${group.image})` }}
       >
         {/* Dark overlay for better text readability */}
@@ -149,12 +149,12 @@ const GroupCard: React.FC<{ group: Group }> = ({ group }) => {
       </div>
       
       {/* Content section with Roman styling - Compact like in image */}
-      <div className="relative bg-gradient-to-b from-card to-muted/30 p-2 space-y-1.5 rounded-b-lg">
+      <div className="relative bg-gradient-to-b from-card to-muted/30 p-1.5 sm:p-2 space-y-1 sm:space-y-1.5 rounded-b-lg">
         {/* Roman decorative line separator */}
         <div className="absolute top-0 left-3 right-3 h-px bg-gradient-to-r from-transparent via-brinks-green/40 to-transparent"></div>
         
         {/* Group name - smaller like in image */}
-        <h3 className="text-xs font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent leading-tight line-clamp-2">
+        <h3 className="text-[10px] sm:text-xs font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent leading-tight line-clamp-2">
           {group.name}
         </h3>
         
@@ -183,10 +183,10 @@ const GroupCard: React.FC<{ group: Group }> = ({ group }) => {
           </div>
           
           <Button 
-            className="relative z-10 w-full bg-gradient-to-r from-brinks-blue to-brinks-green hover:from-brinks-blue/90 hover:to-brinks-green/90 text-white font-medium py-1 px-1 text-[10px] rounded-md shadow-md hover:shadow-lg transition-all duration-300 border border-white/10"
+            className="relative z-10 w-full bg-gradient-to-r from-brinks-blue to-brinks-green hover:from-brinks-blue/90 hover:to-brinks-green/90 text-white font-medium py-0.5 sm:py-1 px-0.5 sm:px-1 text-[8px] sm:text-[10px] rounded-md shadow-md hover:shadow-lg transition-all duration-300 border border-white/10"
             onClick={() => window.open(group.link, '_blank')}
           >
-            <Users className="w-2.5 h-2.5 mr-0.5 flex-shrink-0" />
+            <Users className="w-2 h-2 sm:w-2.5 sm:h-2.5 mr-0.5 flex-shrink-0" />
             <span className="truncate leading-tight">
               {group.platform === 'telegram' 
                 ? (group.isChannel ? 'Entrar no Canal' : 'Entrar no Grupo')
@@ -405,10 +405,10 @@ export const GroupsSection: React.FC = () => {
   const renderGroupsGrid = (groups: Group[]) => {
     console.log('=== DEBUG: Renderizando grupos ===', groups.length);
     return (
-      <div className="w-full px-2 sm:px-4 md:px-0">
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2 sm:gap-3 md:gap-4 justify-items-center">
+      <div className="w-full px-1 sm:px-2 md:px-4 lg:px-0">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-1 sm:gap-2 md:gap-3 lg:gap-4 justify-items-center">
           {groups.map((group, index) => (
-            <div key={group.id} className="w-36 sm:w-44 md:w-52 lg:w-full">
+            <div key={group.id} className="w-full max-w-[180px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-full">
               <GroupCard group={group} />
             </div>
           ))}
@@ -574,11 +574,11 @@ export const GroupsSection: React.FC = () => {
         </div>
 
         {/* Filter Tabs */}
-        <div className="mb-6 sm:mb-8 lg:mb-12 w-full">
+        <div className="mb-4 sm:mb-6 md:mb-8 w-full">
           <Tabs value={activeFilter} onValueChange={setActiveFilter} className="w-full">
-            <div className="w-full mb-6 sm:mb-8">
-              <div className="overflow-x-auto scrollbar-hide pb-2 px-4 sm:px-0">
-                <TabsList className="flex h-8 sm:h-10 items-center justify-start rounded-md bg-card/50 backdrop-blur-sm border border-border/50 p-0.5 sm:p-1 text-muted-foreground shadow-md w-max gap-0.5 sm:gap-1">
+            <div className="w-full mb-4 sm:mb-6">
+              <div className="overflow-x-auto scrollbar-hide pb-2 px-1 sm:px-2 md:px-0">
+                <TabsList className="flex h-8 sm:h-10 items-center justify-start rounded-md bg-card/50 backdrop-blur-sm border border-border/50 p-0.5 sm:p-1 text-muted-foreground shadow-md w-max gap-0.5 sm:gap-1 overflow-x-auto">
                   {[
                     { value: 'all', label: 'Todos', icon: Hash },
                     { value: 'featured', label: 'Destaque', icon: Star },
@@ -594,10 +594,10 @@ export const GroupsSection: React.FC = () => {
                       <TabsTrigger
                         key={tab.value}
                         value={tab.value}
-                        className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium transition-all duration-200 data-[state=active]:bg-gradient-to-r data-[state=active]:from-brinks-blue data-[state=active]:to-brinks-green data-[state=active]:text-white data-[state=active]:shadow-md whitespace-nowrap flex-shrink-0 rounded-md min-w-0"
+                        className="flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium transition-all duration-200 data-[state=active]:bg-gradient-to-r data-[state=active]:from-brinks-blue data-[state=active]:to-brinks-green data-[state=active]:text-white data-[state=active]:shadow-md whitespace-nowrap flex-shrink-0 rounded-md min-w-0"
                       >
-                        <Icon className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
-                        <span className="hidden min-[375px]:inline text-xs sm:text-sm">{tab.label}</span>
+                        <Icon className="w-2.5 h-2.5 sm:w-3 sm:h-3 flex-shrink-0" />
+                        <span className="hidden min-[350px]:inline text-[9px] sm:text-xs">{tab.label}</span>
                       </TabsTrigger>
                     );
                   })}
