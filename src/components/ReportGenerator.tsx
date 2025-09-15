@@ -40,7 +40,8 @@ export const ReportGenerator: React.FC = () => {
       canvas.height = 2000;
 
       // Helper function for rounded rectangles
-      function drawRoundedRect(x: number, y: number, w: number, h: number, r: number, fill?: string, stroke?: string) {
+      type FillOrStroke = string | CanvasGradient | CanvasPattern;
+      function drawRoundedRect(x: number, y: number, w: number, h: number, r: number, fill?: FillOrStroke, stroke?: FillOrStroke) {
         ctx.beginPath();
         ctx.moveTo(x + r, y);
         ctx.arcTo(x + w, y, x + w, y + h, r);
@@ -794,7 +795,7 @@ export const ReportGenerator: React.FC = () => {
   return (
       <div className="flex flex-col items-center gap-4 mt-8">
         <div className="text-center">
-          <h3 className="text-lg font-semibold mb-2">Imagem Oficial da Aliança</h3>
+          <h3 className="text-lg font-semibold mb-2">Imagem Documento da Aliança</h3>
           <p className="text-sm text-muted-foreground mb-4">
             Baixe oficialmente
           </p>
@@ -814,7 +815,7 @@ export const ReportGenerator: React.FC = () => {
             <>
               <FileImage className="w-5 h-5" />
               <Download className="w-4 h-4" />
-              Baixar Imagem do Documento Oficial da Aliança
+              Baixar Imagem
             </>
           )}
         </Button>
