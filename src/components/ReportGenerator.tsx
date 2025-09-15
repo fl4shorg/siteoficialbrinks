@@ -777,7 +777,7 @@ export const ReportGenerator: React.FC = () => {
           document.body.removeChild(a);
           URL.revokeObjectURL(url);
           
-          toast.success('Imagem oficial gerada e baixada!');
+          toast.success('Imagem do documento oficial da aliança gerada e baixada!');
         } else {
           throw new Error('Erro ao gerar a imagem');
         }
@@ -814,7 +814,7 @@ export const ReportGenerator: React.FC = () => {
             <>
               <FileImage className="w-5 h-5" />
               <Download className="w-4 h-4" />
-              Baixar Imagem Oficial
+              Baixar Imagem do Documento Oficial da Aliança
             </>
           )}
         </Button>
