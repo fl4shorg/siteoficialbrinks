@@ -11,6 +11,8 @@ const benefits = [
   { title: 'Crescimento', description: 'Divulgação e apoio da comunidade' },
   { title: 'União', description: 'Todos crescem juntos' },
   { title: 'Apoio Total', description: 'A Aliança sempre ao seu lado' },
+  { title: 'Contas Streaming', description: 'Contas de streaming premium todos os dias' },
+  { title: 'Gift Cards', description: 'Gift cards exclusivos distribuídos diariamente' },
 ];
 
 const requirements = [
