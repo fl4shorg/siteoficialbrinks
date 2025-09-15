@@ -18,7 +18,6 @@ const benefits = [
 const requirements = [
   { title: 'Ter um Grupo', description: 'Grupo ativo com qualquer quantidade de membros' },
   { title: 'Link na Descrição', description: 'Adicione o link da aliança na descrição' },
-  { title: 'Usar a Tag da Brinks', description: 'Tag oficial da Brinks no nome ou perfil' },
 ];
 
 export const ReportGenerator: React.FC = () => {

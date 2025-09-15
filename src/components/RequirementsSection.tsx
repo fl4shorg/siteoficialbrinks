@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, Link, Tag } from 'lucide-react';
+import { Users, Link } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { ReportGenerator } from '@/components/ReportGenerator';
 
@@ -13,11 +13,6 @@ const requirements = [
     icon: Link,
     title: 'Link na Descrição',
     description: 'Adicione o link da aliança na descrição do seu grupo.',
-  },
-  {
-    icon: Tag,
-    title: 'Usar a Tag da Brinks',
-    description: 'Utilize a tag oficial da Brinks em seu nome ou perfil.',
   },
 ];
 
